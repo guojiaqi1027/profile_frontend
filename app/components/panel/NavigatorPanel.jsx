@@ -47,12 +47,16 @@ class NavigatorPanel extends React.Component {
     return;
   }
 
+  onLogoClick = () => {
+    window.location.replace('/');
+  }
+
   renderUserControl = () => {
     if (this.state.profile) {
       return (
-        <div>
-          <span> { this.state.profile.name }</span>
-          <button onClick={ this.onLogoutClick }> Log out </button>
+        <div className="pa-user-control">
+          <div className="pa-user-control-username"> { this.state.profile.name }</div>
+          <button className="pa-btn pa-btn-transparent-white" onClick={ this.onLogoutClick }> Log out </button>
         </div>
       );
     }
@@ -61,10 +65,11 @@ class NavigatorPanel extends React.Component {
 
   render() {
     return (
-    <div>
-      { this.renderUserControl() }
-      <h3>Online Profile System</h3>
-      <hr />
+    <div className="pa-navbar-wrapper">
+      <div className="pa-navbar">
+        <div className="pa-navbar-logo" onClick={ this.onLogoClick }>ProfileWebapp</div>
+          { this.renderUserControl() }
+        </div>
     </div>
     )
   }

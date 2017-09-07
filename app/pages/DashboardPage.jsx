@@ -13,7 +13,7 @@ class DashboardPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="pa-page-content">
         <ProfilePanel />
         <SummaryPanel />
         <EducationList />

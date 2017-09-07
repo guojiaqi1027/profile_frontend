@@ -9,8 +9,8 @@ class FormConfirmPanel extends React.Component {
   render () {
     return (
       <div>
-        <a onClick= {this.submit} >Submit</a>
-        <a onClick={this.cancel}>Cancel</a>
+        <button className="pa-btn pa-btn-transparent-black pa-btn-block pa-btn-lg" onClick= {this.submit} >Submit</button>
+        <button className="pa-btn pa-btn-transparent-black pa-btn-block pa-btn-lg" onClick={this.cancel}>Cancel</button>
       </div>
     )
   };

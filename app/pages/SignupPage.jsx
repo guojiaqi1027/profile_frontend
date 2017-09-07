@@ -67,7 +67,7 @@ class SignupPage extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="login-panel-content">
         <AlertPanel msg={ this.state.error_msg } />
         <SignupCredentialPanel onChange={ this.onCredentialChange }/>
         <SignupProfilePanel onChange={ this.onProfileChange }/>

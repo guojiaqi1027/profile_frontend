@@ -6,20 +6,23 @@ class LoginPanel extends React.Component {
     this.onUsernameChange = props.onUsernameChange;
     this.onPasswordChange = props.onPasswordChange;
     this.submit = props.submit;
+    this.signup = props.signup;
   }
   render() {
         return (
-        <div>
-            <div>
-                <span>username:</span>
-                <input name='username' onChange={ this.onUsernameChange }/>
+        <div className="login-panel-content">
+          <div className="pa-input-group">
+            <div className="pa-input-item">
+                <div>Username:</div>
+                <input className="pa-input" name='username' onChange={ this.onUsernameChange }/>
             </div>
-            <div>
-                <span>password:</span>
-                <input name='password' onChange={ this.onPasswordChange }/>
+            <div className="pa-input-item">
+                <div>Password:</div>
+                <input className="pa-input" name='password' type="password" onChange={ this.onPasswordChange }/>
             </div>
-            <a onClick={ this.submit }>Login</a>
-            <a href='/signup'>Register</a>
+          </div>
+          <button className="pa-btn pa-btn-transparent-black pa-btn-block pa-btn-lg" onClick={ this.submit }>Login</button>
+          <button className="pa-btn pa-btn-transparent-black pa-btn-block pa-btn-lg" onClick={ this.signup }>Register</button>
         </div>
         )
   }

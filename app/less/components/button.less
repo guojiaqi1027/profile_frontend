@@ -1,0 +1,38 @@
+.pa-btn {
+  padding: 3px 6px;
+  outline: none;
+  &.hover,
+  &:hover,
+  &.focus,
+  &:focus {
+    opacity: 0.7;
+  }
+
+  &.active,
+  &:active {
+    opacity: 0.3;
+  }
+  text-decoration: blink;
+  cursor: pointer;
+  text-align: center;
+}
+.pa-btn-transparent-white {
+  color: white;
+  background: transparent;
+  border: 2px solid white;
+}
+.pa-btn-transparent-black {
+  color: black;
+  background: transparent;
+  border: 2px solid black;
+}
+.pa-btn-block {
+  display: block;
+  width: 100%;
+}
+.pa-btn-block + .pa-btn-block {
+  margin-top: 5px;
+}
+.pa-btn-lg {
+  font-size: large;
+}

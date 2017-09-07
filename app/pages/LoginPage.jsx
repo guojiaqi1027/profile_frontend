@@ -52,12 +52,19 @@ class LoginPage extends React.Component {
     });
   }
 
+  signup = () => {
+    window.location.replace('/signup');
+  }
+
   render() {
     return (
-      <LoginPanel onUsernameChange={ this.onUsernameChange }
-                  onPasswordChange={ this.onPasswordChange }
-                  submit={ this.submit }
-      />
+      <div className="pa-page-content">
+        <LoginPanel onUsernameChange={ this.onUsernameChange }
+                    onPasswordChange={ this.onPasswordChange }
+                    submit={ this.submit }
+                    signup={ this.signup }
+        />
+      </div>
     )
   }
 }
