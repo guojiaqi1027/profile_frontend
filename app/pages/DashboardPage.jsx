@@ -4,6 +4,7 @@ import $ from 'jquery';
 import ProfilePanel from 'components/panel/editablePanel/ProfilePanel';
 import SummaryPanel from 'components/panel/editablePanel/SummaryPanel';
 import EducationList from 'components/list/EducationList';
+import ExperienceList from 'components/list/ExperienceList';
 var CONSTANTS = require('utils/constants');
 
 class DashboardPage extends React.Component {
@@ -17,6 +18,7 @@ class DashboardPage extends React.Component {
         <ProfilePanel />
         <SummaryPanel />
         <EducationList />
+        <ExperienceList />
       </div>
     )
   };

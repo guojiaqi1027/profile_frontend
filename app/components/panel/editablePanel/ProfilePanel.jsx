@@ -17,7 +17,6 @@ class ProfilePanel extends React.Component {
       1: 'View',
       2: 'Edit'
     };
-    this.skipField = new Set(['username', 'uid']);
     this.init();
   };
 
@@ -90,36 +89,45 @@ class ProfilePanel extends React.Component {
       </div>
     );
   };
-
   renderUserProfile = () => {
     var self = this;
-    var view = [];
-    $.each(self.state.profile, function (key, value) {
-      if (self.skipField.has(key)) {
-        return;
-      }
-      var field;
-      if (self.state.panelState == 1) {
-        field = <span>{ value }</span>;
-      }
-      else {
-        field = <input name={ key } value={ value } onChange={ self.onPropertyChange }></input>;
-      }
-      var item = <div>{ key }:{ field }</div>;
-      view.push(item);
-    });
+    var name;
+    var title;
+    var phone;
+    var address;
+    if (self.state.panelState == 1) {
+      name = self.state.profile.name;
+      title = self.state.profile.title;
+      phone = self.state.profile.phone;
+      address = self.state.profile.address;
+    }
+    else {
+      name = <input className="pa-input" name="name" value={ self.state.profile.name } onChange={ self.onPropertyChange }></input>;
+      title = <input className="pa-input" name="title" value={ self.state.profile.title } onChange={ self.onPropertyChange }></input>;
+      phone = <input className="pa-input" name="phone" value={ self.state.profile.phone } onChange={ self.onPropertyChange }></input>;
+      address = <input className="pa-input" name="address" value={ self.state.profile.address } onChange={ self.onPropertyChange }></input>;
+    }
     return (
-      <div>
-        { view }
+      <div className="pa-editable-panel-body">
+        <div className="pa-profile-panel-item font-xl font-bold">{ name }</div>
+        <div className="pa-profile-panel-item font-md">{ title }</div>
+        <div className="pa-profile-panel-item font-md">{ phone }</div>
+        <div className="pa-profile-panel-item font-md">{ address }</div>
       </div>
     );
   };
-
-  renderPanelHead = () => {
-    var button = this.state.panelState == 1 ? (<button onClick={ this.onEditClick }>Edit</button>) : null;
+  renderEditBtn = () => {
+    var button = this.state.panelState == 1 ? (<button className="pa-btn pa-btn-transparent-black" onClick={ this.onEditClick }>Edit</button>) : null;
     return (
-      <div>
-        <h4>Profile</h4>
+      <div className="pa-panel-body-control">
+        { button }
+      </div>
+    );
+  }
+  renderPanelHead = () => {
+    var button = this.state.panelState == 1 ? (<button className="pa-btn pa-btn-transparent-white pa-panel-edit-button" onClick={ this.onEditClick }>Edit</button>) : null;
+    return (
+      <div className="pa-panel-head">
         { button }
       </div>
     );
@@ -130,7 +138,9 @@ class ProfilePanel extends React.Component {
       return null;
     }
     else return (
-      <FormConfirmPanel submit={this.onSubmitUpdate} cancel={this.onCancelUpdate} />
+      <div className="pa-editable-panel-confirm">
+        <FormConfirmPanel submit={this.onSubmitUpdate} cancel={this.onCancelUpdate} />
+      </div>
     );
   };
 
@@ -150,9 +160,9 @@ class ProfilePanel extends React.Component {
       );
     }
     return (
-      <div>
+      <div className="pa-editable-panel">
+        { this.renderEditBtn() }
         { this.renderAlertPanel() }
-        { this.renderPanelHead() }
         { this.renderUserProfile() }
         { this.renderConfirmControl() }
       </div>

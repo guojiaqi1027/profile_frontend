@@ -2,6 +2,14 @@
   padding-top: 5px;
   padding-bottom: 5px;
 }
+.pa-input-group-table {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+  .pa-input-item-table-cell + .pa-input-item-table-cell {
+    padding-left: 10px;
+  }
+}
 .pa-input-item {
   padding-bottom: 5px;
   > div {
@@ -14,6 +22,10 @@
   }
 }
 
+.pa-input-item-table-cell {
+  display: table-cell;
+}
+
 .pa-input {
   outline: none;
   border: 1px solid @black-primary;
@@ -24,4 +36,26 @@
     box-shadow: 0 0 1px 0 @black-primary;
     border: 2px solid @black-primary;
   }
+}
+
+.pa-text-area {
+  outline: none;
+  border: 1px solid @black-primary;
+  padding: 5px 10px;
+  font-size: 14px;
+  resize: none;
+  width: 100%;
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 1px 0 @black-primary;
+    border: 2px solid @black-primary;
+  }
+}
+
+.text-area-lg {
+  height: @text-area-lg;
+}
+
+.text-area-sm {
+  height: @text-area-sm;
 }

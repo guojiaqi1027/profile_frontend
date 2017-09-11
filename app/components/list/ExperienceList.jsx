@@ -1,14 +1,14 @@
 import React from 'react';
 import $ from 'jquery';
-import EducationCard from 'components/card/EducationCard';
-import NewEducationCard from 'components/card/NewEducationCard';
+import ExperienceCard from 'components/card/ExperienceCard';
+import NewExperienceCard from 'components/card/NewExperienceCard';
 var CONSTANTS = require('utils/constants');
 
-class EducationList extends React.Component {
+class ExperienceList extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      educationList: [],
+      experienceList: [],
       listState: 0
     };
     this.init();
@@ -20,7 +20,7 @@ class EducationList extends React.Component {
 
   init = () => {
     var self = this;
-    $.ajax(CONSTANTS.GET_EDUCATIONS_URL, {
+    $.ajax(CONSTANTS.GET_EXPERIENCES_URL, {
       xhrFields: { withCredentials: true },
       method: 'POST',
       success: function (res) {
@@ -29,7 +29,7 @@ class EducationList extends React.Component {
           return;
         }
         self.setState({
-          educationList: res.educations
+          experienceList: res.experiences
         });
       }
     });
@@ -57,7 +57,7 @@ class EducationList extends React.Component {
     }
     return (
       <div className="pa-panel-head">
-        <h4>Education</h4>
+        <h4>experience</h4>
         { button }
       </div>
     );
@@ -66,8 +66,8 @@ class EducationList extends React.Component {
   renderList = () => {
     var self = this;
     var list = [];
-    $.each(this.state.educationList, function (index, value) {
-      var card = <EducationCard education={ value } />;
+    $.each(this.state.experienceList, function (index, value) {
+      var card = <ExperienceCard experience={ value } />;
       list.push(card);
     })
     return (
@@ -77,11 +77,11 @@ class EducationList extends React.Component {
     );
   };
 
-  renderNewEducation = () => {
+  renderNewExperience = () => {
     if (this.state.listState == 1) {
       return (
         <div>
-          <NewEducationCard onCancelClick={ this.onCancelNewClick } />
+          <NewExperienceCard onCancelClick={ this.onCancelNewClick } />
         </div>
       )
     }
@@ -94,11 +94,11 @@ class EducationList extends React.Component {
     return (
       <div className="pa-editable-panel">
         { this.renderControls() }
-        { this.renderNewEducation() }
+        { this.renderNewExperience() }
         { this.renderList() }
       </div>
     );
   };
 };
 
-export default EducationList;
+export default ExperienceList;

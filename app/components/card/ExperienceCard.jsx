@@ -3,18 +3,18 @@ import $ from 'jquery';
 import FormConfirmPanel from 'components/panel/common/FormConfirmPanel';
 var CONSTANTS = require('utils/constants');
 
-class EducationCard extends React.Component {
+class ExperienceCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      education: {
-        start_t: props.education.start_t,
-        end_t: props.education.end_t,
-        school: props.education.school,
-        major: props.education.major,
-        degree: props.education.degree,
-        education_id: props.education.education_id,
-        uid: props.education.uid,
+      experience: {
+        start_t: props.experience.start_t,
+        end_t: props.experience.end_t,
+        company: props.experience.company,
+        title: props.experience.title,
+        desc: props.experience.desc,
+        experience_id: props.experience.experience_id,
+        uid: props.experience.uid,
       },
       editState: 0
     };
@@ -24,15 +24,15 @@ class EducationCard extends React.Component {
     1: 'edit'
   };
 
-  old_education = {};
+  old_experience = {};
 
   doDelete = () => {
     var self = this;
-    $.ajax(CONSTANTS.DELETE_EDUCATION_URL, {
+    $.ajax(CONSTANTS.DELETE_EXPERIENCE_URL, {
       xhrFields: { withCredentials: true },
       method: 'POST',
       data: {
-        'education_id': this.state.education.education_id
+        'experience_id': this.state.experience.experience_id
       },
       success: function (res) {
         if (res.success == 0) {
@@ -46,22 +46,22 @@ class EducationCard extends React.Component {
 
   doUpdate = () => {
     var self = this;
-    var education = {
-      start_t: this.state.education.start_t,
-      end_t: this.state.education.end_t,
-      school: this.state.education.school,
-      major: this.state.education.major,
-      degree: this.state.education.degree,
-      education_id: this.state.education.education_id,
-      uid: this.state.education.uid
+    var experience = {
+      start_t: this.state.experience.start_t,
+      end_t: this.state.experience.end_t,
+      company: this.state.experience.company,
+      title: this.state.experience.title,
+      desc: this.state.experience.desc,
+      experience_id: this.state.experience.experience_id,
+      uid: this.state.experience.uid,
     };
 
-    $.ajax(CONSTANTS.UPDATE_EDUCATION_URL, {
+    $.ajax(CONSTANTS.UPDATE_EXPERIENCE_URL, {
       xhrFields: { withCredentials: true },
       method: 'POST',
       data: {
-        'education_id': this.state.education.education_id,
-        'education': JSON.stringify(education)
+        'experience_id': this.state.experience.experience_id,
+        'experience': JSON.stringify(experience)
       },
       success: function (res) {
         if (res.success == 0) {
@@ -74,15 +74,15 @@ class EducationCard extends React.Component {
   };
 
   onPropertyChange = (event) => {
-    var education = this.state.education;
-    education[event.target.name] = event.target.value;
+    var experience = this.state.experience;
+    experience[event.target.name] = event.target.value;
     this.setState({
-      education: education
+      experience: experience
     });
   };
 
   onEditClick = () => {
-    this.old_education = Object.assign({}, this.state.education);
+    this.old_experience = Object.assign({}, this.state.experience);
     this.setState({
       editState: 1
     })
@@ -98,38 +98,46 @@ class EducationCard extends React.Component {
 
   onCancelUpdate = () => {
     this.setState({
-      education: this.old_education,
+      experience: this.old_experience,
       editState: 0
     });
   };
-  renderEducationCard = () => {
+  renderExperienceCard = () => {
     var self = this;
     var time;
-    var school;
+    var company;
+    var title;
     var desc;
     if (self.state.editState == 0) {
-      school = self.state.education.school;
-      time = self.state.education.start_t + " - " + self.state.education.end_t;
-      desc = self.state.education.major + " , " + self.state.education.degree;
+      company = self.state.experience.company;
+      time = self.state.experience.start_t + " - " + self.state.experience.end_t;
+      title = self.state.experience.title;
+      desc = self.state.experience.desc;
     }
     else {
-      school = <input className="pa-input" name="school" value={ self.state.education.school } class="pa-input"></input>;
+      company = <input className="pa-input" name="company" value={ self.state.experience.company } class="pa-input"></input>;
       time = (
         <div>
-          <input className="pa-input" name="start_t" value={ self.state.education.start_t } class="pa-input"></input> - 
-          <input className="pa-input" name="end_t" value={ self.state.education.end_t } class="pa-input"></input>
+          <input className="pa-input" name="start_t" value={ self.state.experience.start_t } class="pa-input"></input> - 
+          <input className="pa-input" name="end_t" value={ self.state.experience.end_t } class="pa-input"></input>
+        </div>
+      );
+      title = (
+        <div>
+          <input className="pa-input" name="title" value={ self.state.experience.title } class="pa-input"></input>
         </div>
       );
       desc = (
         <div>
-          <input className="pa-input" name="major" value={ self.state.education.major } class="pa-input"></input> , 
-          <input className="pa-input" name="degree" value={ self.state.education.degree } class="pa-input"></input>
-        </div>);
+          <textarea className="pa-text-area text-area-sm" name="desc" onChange={ this.onPropertyChange } value={ this.state.experience.desc }></textarea>
+        </div>
+      );
     }
     return (
       <div>
-        <div className="education-card-title">{ school }</div>
+        <div className="education-card-title">{ company }</div>
         <div className="education-card-sub-title">{ time }</div>
+        <div className="education-card-sub-title">{ title }</div>
         <div className="education-card-desc">{ desc }</div>
       </div>
     );
@@ -164,7 +172,7 @@ class EducationCard extends React.Component {
     return (
       <div className="education-card">
         { this.renderControls() }
-        { this.renderEducationCard() }
+        { this.renderExperienceCard() }
         { this.renderConfirmControl() }
         {}
       </div>
@@ -172,4 +180,4 @@ class EducationCard extends React.Component {
   };
 };
 
-export default EducationCard;
+export default ExperienceCard;

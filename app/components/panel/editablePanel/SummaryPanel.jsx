@@ -91,19 +91,19 @@ class SummaryPanel extends React.Component {
       view = <p>{ this.state.summary }</p>
     }
     else {
-      view = <textarea onChange={ this.onPropertyChange } value={ this.state.summary }></textarea>
+      view = <textarea className="pa-text-area text-area-sm" onChange={ this.onPropertyChange } value={ this.state.summary }></textarea>
     }
     return (
-      <div>
+      <div className="pa-editable-panel-body">
         { view }
       </div>
     );
   };
 
   renderPanelHead = () => {
-    var button = this.state.panelState == 1 ? (<button onClick={ this.onEditClick }>Edit</button>) : null;
+    var button = this.state.panelState == 1 ? (<button className="pa-btn pa-btn-transparent-white pa-panel-edit-button" onClick={ this.onEditClick }>Edit</button>) : null;
     return (
-      <div>
+      <div className="pa-panel-head">
         <h4>Summary</h4>
         { button }
       </div>
@@ -115,7 +115,9 @@ class SummaryPanel extends React.Component {
       return null;
     }
     else return (
-      <FormConfirmPanel submit={this.onSubmitUpdate} cancel={this.onCancelUpdate} />
+      <div className="pa-editable-panel-confirm">
+        <FormConfirmPanel submit={this.onSubmitUpdate} cancel={this.onCancelUpdate} />
+      </div>
     );
   };
 
@@ -134,7 +136,7 @@ class SummaryPanel extends React.Component {
       );
     }
     return (
-      <div>
+      <div className="pa-editable-panel">
         { this.renderAlertPanel() }
         { this.renderPanelHead() }
         { this.renderUserSummary() }

@@ -4,16 +4,16 @@ import FormConfirmPanel from 'components/panel/common/FormConfirmPanel';
 
 var CONSTANTS = require('utils/constants');
 
-class NewEducationCard extends React.Component {
+class NewExperienceCard extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      education: {
-        school: null,
+      experience: {
+        company: null,
         start_t: null,
         end_t: null,
-        major: null,
-        degree: null
+        title: null,
+        desc: null
       }
     };
   };
@@ -21,11 +21,11 @@ class NewEducationCard extends React.Component {
   doAdd = () => {
     var self = this;
 
-    $.ajax(CONSTANTS.ADD_EDUCATION_URL, {
+    $.ajax(CONSTANTS.ADD_EXPERIENCE_URL, {
       xhrFields: { withCredentials: true },
       method: 'POST',
       data: {
-        education: JSON.stringify(self.state.education)
+        experience: JSON.stringify(self.state.experience)
       },
       success: function (res) {
         if (res.success == 0) {
@@ -38,10 +38,10 @@ class NewEducationCard extends React.Component {
   };
 
   onPropertyChange = (event) => {
-    var education = this.state.education;
-    education[event.target.name] = event.target.value;
+    var experience = this.state.experience;
+    experience[event.target.name] = event.target.value;
     this.setState({
-      education: education
+      experience: experience
     })
   };
 
@@ -49,11 +49,11 @@ class NewEducationCard extends React.Component {
     this.doAdd();
   };
 
-  renderEducation = () => {
-    var school = (
+  renderExperience = () => {
+    var company = (
       <div className="pa-input-group-table">
-        <div className="pa-input-item pa-input-item-table-cell"><div>School:</div><input className="pa-input" name="school" onChange={this.onPropertyChange}></input></div>
-        <div className="pa-input-item pa-input-item-table-cell"></div>
+        <div className="pa-input-item pa-input-item-table-cell"><div>Company:</div><input className="pa-input" name="company" onChange={this.onPropertyChange}></input></div>
+        <div className="pa-input-item pa-input-item-table-cell"><div>Title:</div><input className="pa-input" name="title" onChange={this.onPropertyChange}></input></div>
       </div>
     );
     var time = (
@@ -64,13 +64,12 @@ class NewEducationCard extends React.Component {
     );
     var desc = (
       <div className="pa-input-group-table">
-        <div className="pa-input-item pa-input-item-table-cell"><div>Major:</div><input className="pa-input" name="major" onChange={this.onPropertyChange}></input></div>
-        <div className="pa-input-item pa-input-item-table-cell"><div>Degree:</div><input className="pa-input" name="degree" onChange={this.onPropertyChange}></input></div>
+        <div className="pa-input-item"><div>Description:</div><textarea className="pa-text-area text-area-sm" name="desc" onChange={ this.onPropertyChange } value={ this.state.experience.desc }></textarea></div>
       </div>
     );
     return (
       <div className="pa-input-group">
-        { school }
+        { company }
         { time }
         { desc }
       </div>
@@ -86,11 +85,11 @@ class NewEducationCard extends React.Component {
   render() {
     return (
       <div className="education-card">
-        { this.renderEducation() }
+        { this.renderExperience() }
         { this.renderControls() }
       </div>
     );
   }
 };
 
-export default NewEducationCard;
+export default NewExperienceCard;

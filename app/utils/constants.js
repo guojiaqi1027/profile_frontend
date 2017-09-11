@@ -12,6 +12,10 @@ var CONSTANTS = {
   ADD_EDUCATION_URL: SETTINGS.DOMAIN + '/education_api/insert_education',
   GET_EDUCATIONS_URL: SETTINGS.DOMAIN + '/education_api/get_educations',
   DELETE_EDUCATION_URL: SETTINGS.DOMAIN + '/education_api/delete_education',
-  UPDATE_EDUCATION_URL: SETTINGS.DOMAIN + '/education_api/update_education'
+  UPDATE_EDUCATION_URL: SETTINGS.DOMAIN + '/education_api/update_education',
+  ADD_EXPERIENCE_URL: SETTINGS.DOMAIN + '/experience_api/insert_experience',
+  GET_EXPERIENCES_URL: SETTINGS.DOMAIN + '/experience_api/get_experiences',
+  DELETE_EXPERIENCE_URL: SETTINGS.DOMAIN + '/experience_api/delete_experience',
+  UPDATE_EXPERIENCE_URL: SETTINGS.DOMAIN + '/experience_api/update_experience'
 }
 module.exports = CONSTANTS;
