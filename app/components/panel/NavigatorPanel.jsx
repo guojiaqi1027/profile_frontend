@@ -1,7 +1,7 @@
 import React from 'react'
 import Cookies from 'js.cookie'
 import $ from 'jquery'
-
+import SearchBar from './common/Searchbar'
 var CONSTANTS = require('../../utils/constants');
 
 class NavigatorPanel extends React.Component {
@@ -62,13 +62,19 @@ class NavigatorPanel extends React.Component {
     }
     return null;
   }
-
+  renderSearchBar = () => {
+    if (this.state.profile) {
+      return (<SearchBar />);
+    }
+    return null;
+  }
   render() {
     return (
     <div className="pa-navbar-wrapper">
       <div className="pa-navbar">
         <div className="pa-navbar-logo" onClick={ this.onLogoClick }>ProfileWebapp</div>
-          { this.renderUserControl() }
+        { this.renderSearchBar() }
+        { this.renderUserControl() }
         </div>
     </div>
     )

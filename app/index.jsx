@@ -4,7 +4,8 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import StartupPage from './pages/StartupPage';
 import NavigatorPanel from './components/panel/NavigatorPanel';
-import DashboardPage from './pages/DashboardPage';
+import DashboardPage from './pages/DashboardPage';            
+import SearchPage from 'pages/SearchPage';      
 import { Route, Link, BrowserRouter, Switch } from 'react-router-dom'
 import Cookies from 'js.cookie';
 import 'less/main.less';
@@ -20,6 +21,7 @@ ReactDOM.render(
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={SignupPage} />
             <Route path="/dashboard" component={DashboardPage} />
+            <Route path="/search" component={ SearchPage } />
           </Switch>
         </BrowserRouter>
       </div>

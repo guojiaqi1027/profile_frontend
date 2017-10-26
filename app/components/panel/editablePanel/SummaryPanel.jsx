@@ -19,6 +19,8 @@ class SummaryPanel extends React.Component {
     }
   };
 
+
+  
   init = () => {
     var self = this;
     $.ajax(CONSTANTS.GET_SUMMARY_URL, {

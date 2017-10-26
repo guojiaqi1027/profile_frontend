@@ -12,6 +12,7 @@
     padding: 10px 20px 10px 0px;
     display: inline-block;
     line-height: 25px;
+    cursor: pointer;
   }
 
   .pa-user-control {
@@ -23,5 +24,31 @@
     display: inline-block;
     padding-right: 10px;
     vertical-align: middle;
+  }
+
+  .pa-navbar-searchbar {
+    display: inline-block;
+    width: 600px;
+    height: 26px;
+    .pa-navbar-searchbar-input {
+      width: 85%;
+      height: 100%;
+      border: none;
+      box-shadow: none;
+      &:focus {
+        width: 85%;
+      }
+    }
+    .pa-navbar-searchbar-btnwrapper {
+      display: inline-block;
+      width: 15%;
+      height: 100%;
+      margin-top: -2.2px;
+      vertical-align: middle;
+      > button {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 }
